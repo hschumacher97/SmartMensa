@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Speisekarte</title>
+    </h:head>
+    <h:body>
+        <h:dataTable value = "#{gerichte.dishList}" var = "gericht"
+            styleClass = "gerichtTable"
+            headerClass = "gerichtTableHeader"
+            rowClasses = "gerichtTableOddRow,gerichtTableEvenRow">
+        
+        <h:column>    				
+            <f:facet name = "header">Nummer</f:facet>		
+            <h:outputText value="#{gerichte.dishList.indexOf(gericht)+1}"/>            
+        </h:column>
+   
+        <h:column>
+            <f:facet name = "header">Name</f:facet>
+            #{gericht.dishName}
+        </h:column>
+        
+        <h:column>
+            <f:facet name = "header">Preis</f:facet>
+            #{gericht.price}
+        </h:column>
+        
+        <h:column>
+            <f:facet name = "header"></f:facet>
+            <h:graphicImage value="/images/#{gericht.imageName}.jpg" alt="#{gericht.imageName}.jpg"/>
+        </h:column>
+
+        <h:column>
+            <h:form id="dishChangeForm">
+            <f:facet name = "header"></f:facet>
+            <p:commandButton action="#{gerichte.addDishToWarenkorb(gericht)}" value="In den Warenkorb">
+                <f:ajax render="einkaufswagen totalPrice bestellBtn" execute="dishChangeForm" ></f:ajax>
+            </p:commandButton>
+            </h:form>
+        </h:column>
+        </h:dataTable> 
+
+        
+
+        <h2>Ihr Einkaufswagen</h2>
+        <h:dataTable value = "#{gerichte.warenkorb}" var = "gericht"
+            styleClass="gerichtTable"
+            headerClass ="gerichtTableHeader"
+            rowClasses ="gerichtTableOddRow, gerichtTableEvenRow"
+            id="einkaufswagen">
+
+            <h:column>
+                <f:facet name = "header"></f:facet>
+                    #{gericht.dishName}
+             </h:column>
+        
+             <h:column>
+                <f:facet name = "header"></f:facet>
+                 #{gericht.price}
+            </h:column>
+
+            <h:column>
+            <h:form id="deleteDish">
+            <f:facet name = "header"></f:facet>
+            <p:commandButton action="#{gerichte.removeDishFromWarenkorb(gericht)}" value="Löschen">
+                <f:ajax render="einkaufswagen totalPrice bestellBtn" execute="deleteDish"></f:ajax>
+            </p:commandButton>
+            </h:form>
+        </h:column>
+        </h:dataTable>
+
+        <h3>Gesamtpreis: 
+            <h:outputText id ="totalPrice" value="#{gerichte.getTotalPrice()}">
+                <f:convertNumber type="currency" currencySymbol="€" pattern="###.##€" />
+            </h:outputText>
+        </h3>
+        <h:form id="bestellBtn">
+            <c:if test="#{gerichte.ableToOrder()}">
+                <p:commandButton action="bestellen" value="Bestellen" update="" ajax="" ></p:commandButton>
+            </c:if>
+        </h:form>
+        
+    </h:body>  
+</html>
