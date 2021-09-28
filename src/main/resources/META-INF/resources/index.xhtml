@@ -2,13 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>login</title>
     </h:head>
     <h:body>
-        
-        <h:form id="loginForm">
+        <ui:composition >
+        <h:form id="loginForm" >
         <f:event listener="#{loginView.initialize}" type="preRenderView" />           
             <p:growl id="msg" showDetail="true" life="3000" />
             <p:panel header="SmartMensa Login" style="width: 360px;"> 
@@ -27,5 +28,6 @@
             </p:panel> 
         </h:form> 
 
+</ui:composition>
     </h:body>  
 </html>

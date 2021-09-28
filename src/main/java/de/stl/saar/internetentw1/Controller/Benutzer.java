@@ -7,6 +7,7 @@ import javax.enterprise.context.SessionScoped;
 import de.stl.saar.internetentw1.dao.classes.UserDaoImpl;
 import de.stl.saar.internetentw1.entities.RoleEntity;
 import de.stl.saar.internetentw1.entities.UserEntity;
+import de.stl.saar.internetentw1.utils.RandomUtils;
 
 @ManagedBean
 @SessionScoped
@@ -62,6 +63,15 @@ public class Benutzer {
         userName = "";
         password = "";
         emailAddress = "";
+    }
+
+    public void generatePassword(){
+        this.password = RandomUtils.createStringWithRandomChars(10);
+
+        System.out.println("**************************************************");
+        System.out.println(password);
+        System.out.println("**************************************************");
+        
     }
 
     public String getEmailAddress() {

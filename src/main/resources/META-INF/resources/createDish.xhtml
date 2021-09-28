@@ -13,13 +13,14 @@
                 <p:growl id="msg" showDetail="true" life="3000" />
                 <p:panel header="Gericht erstellen und ändern" style="width: 360px;">     
                     <h:panelGrid id="createPanel" columns="2">    
-                        <!-- TODO Validierung der Inputs-->
                         <h:outputText value="Name:" />     
-                        <p:inputText id="dishName" value="#{gerichte.dishName}" ></p:inputText>
+                        <p:inputText id="dishName" value="#{gerichte.dishName}" required="true"></p:inputText>
                         <p:spacer></p:spacer>     
                         <p:message for="dishName" ></p:message>     
                         <h:outputText value="Preis:" />     
-                        <p:inputText id="price" value="#{gerichte.price}" ></p:inputText>
+                        <p:inputText id="price" value="#{gerichte.price}" >
+                            <f:validateDoubleRange minimum="0.0" maximum="10.0"/>
+                        </p:inputText>
                         <p:spacer></p:spacer>     
                         <p:message for="price"></p:message>     
                         <p:spacer></p:spacer>
