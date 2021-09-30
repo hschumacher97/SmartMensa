@@ -1,16 +1,25 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"  
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>login</title>
-    </h:head>
-    <h:body>
-        <h1>Willkommen!</h1>
-        <a href="createUser.xhtml">Eigenes Profil ändern</a><br></br>
-        <a href="Speisekarte.xhtml">Zur Bestellung</a><br></br>
-        <a href="index.xhtml">Ausloggen</a><br></br>
-     </h:body> 
- 
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>login</title>
+</h:head>
+<h:body>
+	<ui:composition template="template.xhtml">
+		<ui:define name="content">
+			<h1>Willkommen!</h1>
+			<a href="createUser.xhtml">Eigenes Profil ändern</a>
+			<br></br>
+			<a href="Speisekarte.xhtml">Zur Bestellung</a>
+			<br></br>
+			<a href="index.xhtml">Ausloggen</a>
+			<br></br>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
 </html>

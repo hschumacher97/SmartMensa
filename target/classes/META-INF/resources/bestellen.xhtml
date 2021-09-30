@@ -1,46 +1,57 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"  
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Lieferdaten</title>
-    </h:head>
-    <h:body>
-        <h:form id="lieferdaten">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Lieferdaten</title>
+</h:head>
+<h:body>
+	<ui:composition template="template.xhtml">
 
-            <p:growl id="msg" showDetail="true" life="3000" />
-            <p:commandButton action="loginSuccessfulUser" value="Zurück zur Startseite" immediate="true"></p:commandButton>
-            
-            <p:panel header="Lieferdaten" style="width: 360px;">
- 
-                <h:panelGrid id="lieferdaten" columns="2">
+		<ui:define name="content">
+			<h:form id="lieferdaten">
 
-                    <h:outputText value="Raumnummer" />
- 
-                    <p:inputText id="raumnummer" value="#{lieferdatenView.room}" converter="roomConverter" validator="#{lieferdatenView.validateRoom}"></p:inputText>
- 
-                    <p:spacer></p:spacer>
- 
-                    <p:message for="raumnummer" ></p:message>
- 
-                    <h:outputText value="Ihr Name" />
- 
-                    <h:inputText id="name" value="#{lieferdatenView.name}" required="true"></h:inputText>
- 
-                    <p:spacer></p:spacer>
+				<p:growl id="msg" showDetail="true" life="3000" />
+				<p:commandButton action="loginSuccessfulUser"
+					value="Zurück zur Startseite" immediate="true"></p:commandButton>
 
- 
-                    <p:commandButton action="#{lieferdatenView.bestellBtn}" value="Bestellen" update="lieferdaten" ajax="true"></p:commandButton>
-                   
-                    
-                </h:panelGrid>
- 
-            </p:panel>
-            <h:outputText value="#{lieferdatenView.response}" escape="false" ></h:outputText>
- 
-        </h:form>
- 
-    </h:body> 
- 
+				<p:panel header="Lieferdaten" style="width: 360px;">
+
+					<h:panelGrid id="lieferdaten" columns="2">
+
+						<h:outputText value="Raumnummer" />
+
+						<p:inputText id="raumnummer" value="#{lieferdatenView.room}"
+							converter="roomConverter"
+							validator="#{lieferdatenView.validateRoom}"></p:inputText>
+
+						<p:spacer></p:spacer>
+
+						<p:message for="raumnummer"></p:message>
+
+						<h:outputText value="Ihr Name" />
+
+						<h:inputText id="name" value="#{lieferdatenView.name}"
+							required="true"></h:inputText>
+
+						<p:spacer></p:spacer>
+
+
+						<p:commandButton action="#{lieferdatenView.bestellBtn}"
+							value="Bestellen" update="lieferdaten" ajax="true"></p:commandButton>
+
+
+					</h:panelGrid>
+
+				</p:panel>
+				<h:outputText value="#{lieferdatenView.response}" escape="false"></h:outputText>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
 </html>
