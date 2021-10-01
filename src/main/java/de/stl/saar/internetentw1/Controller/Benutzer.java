@@ -86,6 +86,7 @@ public class Benutzer {
         return role;
     }
 
+
     public List<UserEntity> getUserList() {
         return userList;
     }

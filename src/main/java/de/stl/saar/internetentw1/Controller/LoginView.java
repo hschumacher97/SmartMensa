@@ -18,7 +18,7 @@ public class LoginView {
     private String username;
     private String password;
     private UserEntity currentUser;
-    
+    private boolean isAdmin;
     @PostConstruct
     public void initializeBean(){
         userService = new UserDaoImpl();
@@ -42,8 +42,10 @@ public class LoginView {
             if (password.equals(user.getPassword())){
                 currentUser = user;
                 if (user.getRole().getRoleName().equals("admin")){
+                    isAdmin = true;
                     return "loginSuccessfulAdmin";
                 } else {
+                    isAdmin=false;
                     return "loginSuccessfulUser";
                 }
             } else {
@@ -58,6 +60,14 @@ public class LoginView {
 
     public void setPassword(String password){
         this.password = password;
+    }
+
+    public void setIsAdmin(boolean isAdmin){
+        this.isAdmin = isAdmin;
+    }
+
+    public boolean getIsAdmin(){
+        return this.isAdmin;
     }
 
     public String getUsername(){

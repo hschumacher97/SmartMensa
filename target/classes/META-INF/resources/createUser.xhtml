@@ -44,8 +44,14 @@
 						<p:spacer></p:spacer>
 						<p:commandButton action="#{benutzer.createUser}" value="Speichern"
 							update="userCreateForm" ajax="true"></p:commandButton>
-						<p:commandButton onclick="history.go(-1)" value="Abbrechen"
+						<c:if test="#{loginView.isAdmin}">
+						<p:commandButton action="loginSuccessfulAdmin" value="Abbrechen"
 							immediate="true"></p:commandButton>
+						</c:if>
+						<c:if test="#{loginView.isAdmin==false}">
+						<p:commandButton action="loginSuccessfulUser" value="Abbrechen"
+							immediate="true"></p:commandButton>
+						</c:if>
 
 					</h:panelGrid>
 				</p:panel>

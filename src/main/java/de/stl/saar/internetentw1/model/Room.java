@@ -48,6 +48,10 @@ public class Room {
 
 	
 	public String toString(){
+		
+		if(room<10){
+			return ""+building+floor+"0"+room;
+		}
 		return ""+building+floor+room;
 	}
 	
