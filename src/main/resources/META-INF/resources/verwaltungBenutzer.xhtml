@@ -10,8 +10,6 @@
         <title>Benutzerverwaltung</title>
     </h:head>
     <h:body>
-    <ui:composition template="template.xhtml">
-    <ui:define name="content">
         <h:dataTable value = "#{benutzer.userList}" var = "user"
             styleClass = "userTable"
             headerClass = "userTableHeader"
@@ -58,7 +56,5 @@
         <p:commandButton action="createUser" value="Neu"/>
         <p:commandButton action="loginSuccessfulAdmin" value="Zurück"/>
         </h:form>
-        </ui:define>
-        </ui:composition>
     </h:body>  
 </html>

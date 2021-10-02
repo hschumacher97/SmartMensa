@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import de.stl.saar.internetentw1.utils.RandomUtils;
+
 @Entity
 public class UserEntity {
 	private long userId;
@@ -34,6 +36,18 @@ public class UserEntity {
 		this.userName = userName;
 		this.password = password;
 		this.emailAddress = emailAddress;
+	}
+
+	public UserEntity(String userName, String emailAddress, String password, boolean passwordResetRequired){
+		super();
+		this.userName = userName;
+		this.emailAddress = emailAddress;
+		if(passwordResetRequired){
+			this.password = generatePassword();
+		}
+		else {
+			this.password  = password;
+		}
 	}
 
 	@Id
@@ -85,5 +99,9 @@ public class UserEntity {
 	
 	public void setPasswordResetRequired(boolean passwordResetRequired) {
 		this.passwordResetRequired = passwordResetRequired;
+	}
+
+	public String generatePassword(){
+		return RandomUtils.createStringWithRandomChars(10);
 	}
 }

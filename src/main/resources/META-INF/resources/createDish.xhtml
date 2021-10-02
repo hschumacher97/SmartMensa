@@ -10,8 +10,6 @@
 	<title>Gericht erstellen</title>
 </h:head>
 <h:body>
-	<ui:composition template="template.xhtml">
-		<ui:define name="content">
 			<h:form id="dishCreateForm">
 				<f:event listener="#{createDishView.initialize}"
 					type="preRenderView" />
@@ -42,7 +40,5 @@
 					</h:panelGrid>
 				</p:panel>
 			</h:form>
-		</ui:define>
-	</ui:composition>
 </h:body>
 </html>

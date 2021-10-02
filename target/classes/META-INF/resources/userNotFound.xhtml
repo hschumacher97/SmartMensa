@@ -9,8 +9,6 @@
 	<title>login</title>
 </h:head>
 <h:body>
-	<ui:composition template="template.xhtml">
-		<ui:define name="content">
 			<h:form id="loginForm">
 				<f:event listener="#{loginView.initialize}" type="preRenderView" />
 
@@ -27,14 +25,15 @@
 
 						<p:message for="username"></p:message>
 
+						<p:spacer></p:spacer>
+
+						<p:message for="username">User not found!</p:message>
+
 						<h:outputText value="Password" />
 
 						<p:password id="password" value="#{loginView.password}"
 							feedback="false"></p:password>
 
-						<p:spacer></p:spacer>
-
-						<p:message for="password">User not found!</p:message>
 
 						<p:spacer></p:spacer>
 
@@ -46,8 +45,6 @@
 				</p:panel>
 
 			</h:form>
-		</ui:define>
-	</ui:composition>
 </h:body>
 
 </html>

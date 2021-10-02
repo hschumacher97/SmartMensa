@@ -9,9 +9,9 @@
 	<title>Lieferdaten</title>
 </h:head>
 <h:body>
-	<ui:composition template="template.xhtml">
+	
 
-		<ui:define name="content">
+		
 			<h:form id="lieferdaten">
 
 				<p:growl id="msg" showDetail="true" life="3000" />
@@ -20,7 +20,7 @@
 
 				<p:panel header="Lieferdaten" style="width: 360px;">
 
-					<h:panelGrid id="lieferdaten" columns="2">
+					<h:panelGrid id="lieferdaten" columns="1">
 
 						<h:outputText value="Raumnummer" />
 
@@ -50,8 +50,7 @@
 				<h:outputText value="#{lieferdatenView.response}" escape="false"></h:outputText>
 
 			</h:form>
-		</ui:define>
-	</ui:composition>
+	
 </h:body>
 
 </html>

@@ -15,11 +15,11 @@ public class Benutzer {
 
     private UserDaoImpl userService;
     private List<UserEntity> userList;
-
     private String userName;
     private RoleEntity role;
     private String emailAddress;
     private String password;
+    private boolean passwordResetRequired;
     
     @PostConstruct
     public void initializeBean(){
@@ -29,11 +29,10 @@ public class Benutzer {
         userList = userService.findAllUsers();
         userName = "";
         emailAddress = "";
-        password = "";    
-        }
+        passwordResetRequired = false;
+            }
     }
 
-    //TODO changeUser aus Hauptmenu
     public String changeUser(UserEntity user){
         userName = user.getUserName();
         role = user.getRole();
@@ -50,8 +49,14 @@ public class Benutzer {
         return "verwaltungBenutzer";
     }
 
-    public String createUser(){
-        UserEntity user = new UserEntity(userName, password, emailAddress);
+    public String createUserAsAdmin(){
+        if(userService.findUser(userName) != null){
+            UserEntity user = userService.findUser(userName);
+            long userId = user.getUserId();
+            userService.removeUser(userId);
+            
+        }
+        UserEntity user = new UserEntity(userName, emailAddress, password, passwordResetRequired);
         user.setRole(role);
         userService.addUser(user);
         userList = userService.findAllUsers();
@@ -59,19 +64,25 @@ public class Benutzer {
         return "verwaltungBenutzer";
     }
 
+    public String createUserAsUser(){
+        UserEntity user = new UserEntity(userName, emailAddress, password, passwordResetRequired);
+        user.setRole(role);
+        userService.addUser(user);
+        userList = userService.findAllUsers();
+        clearFields();
+        return "loginSuccessfulUser";
+    }
+
     private void clearFields(){
         userName = "";
         password = "";
         emailAddress = "";
+        passwordResetRequired = false;
     }
 
-    public void generatePassword(){
-        this.password = RandomUtils.createStringWithRandomChars(10);
+    public void editUserAsUser(){
+        UserEntity user = new UserEntity(userName, emailAddress, password);
 
-        System.out.println("**************************************************");
-        System.out.println(password);
-        System.out.println("**************************************************");
-        
     }
 
     public String getEmailAddress() {
@@ -118,5 +129,13 @@ public class Benutzer {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public boolean getPasswordResetRequired(){
+        return this.passwordResetRequired;
+    }
+    
+    public void setPasswordResetRequired(boolean required){
+        this.passwordResetRequired = required;
     }
 }

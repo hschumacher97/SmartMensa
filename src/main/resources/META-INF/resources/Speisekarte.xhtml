@@ -10,8 +10,6 @@
 	<title>Speisekarte</title>
 </h:head>
 <h:body>
-	<ui:composition template="template.xhtml">
-		<ui:define name="content">
 			<h:dataTable value="#{gerichte.dishList}" var="gericht"
 				styleClass="gerichtTable" headerClass="gerichtTableHeader"
 				rowClasses="gerichtTableOddRow,gerichtTableEvenRow">
@@ -93,7 +91,5 @@
 						ajax=""></p:commandButton>
 				</c:if>
 			</h:form>
-		</ui:define>
-	</ui:composition>
 </h:body>
 </html>

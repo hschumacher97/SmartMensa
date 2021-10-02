@@ -10,15 +10,13 @@
 	<title>Benutzer erstellen</title>
 </h:head>
 <h:body>
-	<ui:composition template="template.xhtml">
-		<ui:define name="content">
 			<h:form id="userCreateForm">
 				<f:event listener="#{createUserView.initialize}"
 					type="preRenderView" />
 				<p:growl id="msg" showDetail="true" life="3000" />
 				<p:panel header="Benutzer erstellen und ändern"
 					style="width: 360px;">
-					<h:panelGrid id="createPanel" columns="2">
+					<h:panelGrid id="createPanel" columns="1">
 						<h:outputText value="Benutzername:" />
 						<p:inputText id="userName" value="#{benutzer.userName}"
 							required="true"></p:inputText>
@@ -39,24 +37,21 @@
 						<p:spacer></p:spacer>
 						<h:outputText value="Passwort:" />
 						<p:inputText id="password" value="#{benutzer.password}"></p:inputText>
-						<p:commandButton action="#{benutzer.generatePassword()}"
-							value="Neues Passwort"></p:commandButton>
+						<h:selectBooleanCheckbox value="#{benutzer.passwordResetRequired}" id="checkbox">Generieren</h:selectBooleanCheckbox>
 						<p:spacer></p:spacer>
-						<p:commandButton action="#{benutzer.createUser}" value="Speichern"
-							update="userCreateForm" ajax="true"></p:commandButton>
 						<c:if test="#{loginView.isAdmin}">
-						<p:commandButton action="loginSuccessfulAdmin" value="Abbrechen"
-							immediate="true"></p:commandButton>
+							<p:commandButton action="#{benutzer.createUserAsAdmin()}" value="Speichern"></p:commandButton>
+							<p:commandButton action="loginSuccessfulAdmin" value="Abbrechen"
+								immediate="true"></p:commandButton>
 						</c:if>
 						<c:if test="#{loginView.isAdmin==false}">
-						<p:commandButton action="loginSuccessfulUser" value="Abbrechen"
-							immediate="true"></p:commandButton>
+							<p:commandButton action="#{benutzer.createUserAsUser()}" value="Speichern"></p:commandButton>
+							<p:commandButton action="loginSuccessfulUser" value="Abbrechen"
+								immediate="true"></p:commandButton>
 						</c:if>
 
 					</h:panelGrid>
 				</p:panel>
 			</h:form>
-		</ui:define>
-	</ui:composition>
 </h:body>
 </html>
