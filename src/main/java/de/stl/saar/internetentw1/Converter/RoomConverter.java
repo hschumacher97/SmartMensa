@@ -31,14 +31,7 @@ public class RoomConverter implements Converter {
         int roomNumber2= Character.getNumericValue(value.charAt(3));
         String roomNumberTotal = ""+roomNumber1+roomNumber2;
         int roomNumber= Integer.parseInt(roomNumberTotal);
-
-        
-
-        System.out.println("*******************************************************************************************************");
-        System.out.println(""+building);
-        System.out.println(""+floor);
-        System.out.println(""+roomNumber);
-        System.out.println("*******************************************************************************************************");        
+     
         Room room = new Room(building, floor, roomNumber);
         return room;
     }

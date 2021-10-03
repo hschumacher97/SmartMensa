@@ -130,6 +130,7 @@ public class Gerichte {
         return total;
     }
 
+
     public boolean ableToOrder(){
         if(warenkorb.isEmpty()){
             return false;
